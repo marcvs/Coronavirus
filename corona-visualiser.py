@@ -104,7 +104,6 @@ countries = {
         'Austria': ['Main'],
         'Belgium': ['Main'],
         'Bosnia and Herzegovina': ['Main'],
-        'China': ['Main'],
         'Croatia': ['Main'],
         'Cyprus': ['Main'],
         'Czechia': ['Main'],
