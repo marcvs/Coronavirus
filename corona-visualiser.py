@@ -26,8 +26,8 @@ def parseOptions():
     parser.add_argument('--verbose', '-v', action="count", default=0, help='Verbosity')
     parser.add_argument('--john', '-jhc', help='''Path to data of CSSE Data of Johns Hopkins.
             This may be a git clone of https://github.com/CSSEGISandData/COVID-19
-            or the url https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports''',
-            default='https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports')
+            or the url https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/''',
+            default='https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/')
     parser.add_argument('--rki', '-rki', help='''Path to data of German RKI Data
             This may be a git clone of this repository 
             or the url https://raw.githubusercontent.com/marcvs/Coronavirus/master/rki-fallzahlen''',
@@ -58,15 +58,15 @@ path_list = []
 # https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports
 # Jan
 for d in range(22, 32):
-    path_list.append (str(base_path_cs+f'/01-{d}-2020.csv'))
+    path_list.append (str(base_path_cs+f'/csse_covid_19_data/csse_covid_19_daily_reports/01-{d}-2020.csv'))
 # Feb
 for d in range(1, 30):
-    path_list.append (str(base_path_cs+f'/02-{d:02}-2020.csv'))
+    path_list.append (str(base_path_cs+f'/csse_covid_19_data/csse_covid_19_daily_reports/02-{d:02}-2020.csv'))
     if d >= 28:
         path_list.append (str(base_path_de+f'/2020-02-{d:02}.csv'))
 # Mar
 for d in range(11, day+1):
-    path_list.append (str(base_path_cs+f'/03-{d:02}-2020.csv'))
+    path_list.append (str(base_path_cs+f'/csse_covid_19_data/csse_covid_19_daily_reports/03-{d:02}-2020.csv'))
     path_list.append (str(base_path_de+f'/2020-03-{d:02}.csv'))
 
 csv_list = []
@@ -81,11 +81,12 @@ for d in path_list:
         np.array(dates)
         csv_list.append(dates)
     except FileNotFoundError:
-        print (F"  Could not read {d}")
+        if args.verbose:
+            print (F"\n  Could not read {d}")
         pass
     except HTTPError:
         if args.verbose:
-            print (F"  Could not read {d}")
+            print (F"\n  Could not read {d}")
         pass
 
 # print (csv_list[10])
