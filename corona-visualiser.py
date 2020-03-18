@@ -104,6 +104,7 @@ countries = {
         'Austria': ['Main'],
         'Belgium': ['Main'],
         'Bosnia and Herzegovina': ['Main'],
+        'China': ['Main'],
         'Croatia': ['Main'],
         'Cyprus': ['Main'],
         'Czechia': ['Main'],
@@ -167,11 +168,13 @@ countries = {
         'Poland': ['Main'],
         'Portugal': ['Main'],
         'Romania': ['Main'],
+        'Russia': ['Main'],
         'Serbia': ['Main'],
         'Slovenia': ['Main'],
         'Spain': ['Main'],
         'Switzerland': ['Main'],
         'Turkey': ['Main'],
+        'Ukraine': ['Main'],
         # 'United Kingdom': ['United Kingdom', 'Gibraltar'],
 }
 # countries = {'Germany': '', 'United Kingdom':['Cayman Islands', 'Gibraltar']}
