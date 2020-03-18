@@ -1,0 +1,19 @@
+Province/State,Country/Region,Last Update,Confirmed,Deaths,Recovered,Latitude,Longitude
+Baden-Württemberg,Germany,2020-02-28T10:00:00,10,0,0
+Bayern,Germany,2020-02-28T10:00:00,15,0,0
+Berlin,Germany,2020-02-28T10:00:00,0,0,0
+Brandenburg,Germany,2020-02-28T10:00:00,0,0,0
+Bremen,Germany,2020-02-28T10:00:00,0,0,0
+Hamburg,Germany,2020-02-28T10:00:00,0,0,0
+Hessen,Germany,2020-02-28T10:00:00,0,0,0
+Mecklenburg-Vorpommern,Germany,2020-02-28T10:00:00,0,0,0
+Niedersachsen,Germany,2020-02-28T10:00:00,0,0,0
+Nordrhein-Westfalen,Germany,2020-02-28T10:00:00,25,0,0
+Rheinland-Pfalz,Germany,2020-02-28T10:00:00,0,0,0
+Saarland,Germany,2020-02-28T10:00:00,0,0,0
+Sachsen,Germany,2020-02-28T10:00:00,0,0,0
+Sachsen-Anhalt,Germany,2020-02-28T10:00:00,0,0,0
+SchleswigHolstein,Germany,2020-02-28T10:00:00,1,0,0
+Thüringen,Germany,2020-02-28T10:00:00,0,0,0
+Gesamt,Germany,2020-02-28T10:00:00,53,0,0
+
