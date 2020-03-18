@@ -16,3 +16,8 @@ The code for data input and visualisation is based
 - I made use of pandas and matplotlib
 
 The code to regenerate this (together with the RKI data) is here: https://github.com/marcvs/Coronavirus
+
+# TL;DR
+Image gallery is here: http://marcus.hardt-it.de/Corona 
+
+Plain images here http://marcus.hardt-it.de/Corona/gallery/scaled-images
