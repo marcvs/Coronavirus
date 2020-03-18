@@ -11,12 +11,28 @@ from datetime import date, datetime
 import json
 import pandas as pd
 import numpy as np
+import argparse
+from urllib.error import HTTPError
 
 from datetime import date
 day = (date.today())
 day = str(day)
 day = day[-2:]
 day = int(day)
+
+def parseOptions():
+    '''Parse the commandline options'''
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--verbose', '-v', action="count", default=0, help='Verbosity')
+    parser.add_argument('--john', '-jhc', help='''Path to data of CSSE Data of Johns Hopkins.
+            This may be a git clone of https://github.com/CSSEGISandData/COVID-19
+            or the url https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports''',
+            default='https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports')
+    parser.add_argument('--rki', '-rki', help='''Path to data of German RKI Data
+            This may be a git clone of this repository 
+            or the url https://raw.githubusercontent.com/marcvs/Coronavirus/master/rki-fallzahlen''',
+            default='https://raw.githubusercontent.com/marcvs/Coronavirus/master/rki-fallzahlen')
+    return parser
 
 def try_parsing_date(text):
     for fmt in ('%m/%d/%y %H:%M', '%m/%d/%Y %H:%M', '%Y-%m-%dT%H:%M:%S'):
@@ -26,40 +42,50 @@ def try_parsing_date(text):
             pass
     raise ValueError(F'no valid date format found: >>{text}<<')
 
-sys.stdout.write("Reading Data...")
+
+
+args = parseOptions().parse_args()
+
+sys.stdout.write("Reading data: ")
 sys.stdout.flush()
-#Base de dados
-#https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data?fbclid=IwAR1C6Cf_k5bpeEF5v1I9G-OlXeMZd0B1JreUw4ayc5tuOLYVSKvyunFaam8
 data = str(date.today())
-base_path_cs = '/home/marcus/github/covid-19/CSSEGISandData/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports'
-base_path_de = '/home/marcus/github/covid-19/corona-visualiser/rki-fallzahlen'
+# base_path_cs = '/home/marcus/github/covid-19/CSSEGISandData/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports'
+# base_path_de = 'rki-fallzahlen'
+base_path_cs = args.john
+base_path_de = args.rki
 path_list = []
 
-base_url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports'
+# https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports
 # Jan
 for d in range(22, 32):
     path_list.append (str(base_path_cs+f'/01-{d}-2020.csv'))
 # Feb
 for d in range(1, 30):
     path_list.append (str(base_path_cs+f'/02-{d:02}-2020.csv'))
-    path_list.append (str(base_path_de+f'/2020-02-{d:02}.csv'))
+    if d >= 28:
+        path_list.append (str(base_path_de+f'/2020-02-{d:02}.csv'))
 # Mar
-for d in range(1, day+1):
+for d in range(11, day+1):
     path_list.append (str(base_path_cs+f'/03-{d:02}-2020.csv'))
     path_list.append (str(base_path_de+f'/2020-03-{d:02}.csv'))
-
-# path_list.append (str(base_path_de+f'/rki-fallzahlen/2020-02-28.csv')
-
-# print(json.dumps(path_list, sort_keys=True, indent=4, separators=(',', ': ')))
 
 csv_list = []
 for d in path_list:
     try:
+        if args.verbose:
+            print (F"Load from {d}")
+        else:
+            sys.stdout.write('.')
+            sys.stdout.flush()
         dates = pd.read_csv(d)
         np.array(dates)
         csv_list.append(dates)
     except FileNotFoundError:
-        # print (F"Could not read {d}")
+        print (F"  Could not read {d}")
+        pass
+    except HTTPError:
+        if args.verbose:
+            print (F"  Could not read {d}")
         pass
 
 # print (csv_list[10])
