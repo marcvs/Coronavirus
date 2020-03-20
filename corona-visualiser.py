@@ -298,12 +298,12 @@ for country in countries:
         # print ("skipping eGermany")
         continue
     for region in countries[country]:
-        # if region != 'Main':
-        #     print (F"{country}/{region}")
-        #     plt.title(F'{country}/{region} Virus development')
-        # else:
-        #     print (F"{country}")
-        #     plt.title(F'{country} Virus development')
+        if region != 'Main':
+            # print (F"{country}/{region}")
+            plt.title(F'{country}/{region} Virus development')
+        else:
+            # print (F"{country}")
+            plt.title(F'{country} Virus development')
 
         x = dates.date2num(country_list[country][region]['Last Update'])
         for cat in ['Confirmed', 'Deaths', 'Recovered']:
