@@ -111,6 +111,7 @@ countries = {
         'Finland': ['Main'],
         'France': ['France'],
         'Germany': [
+            'Main',
             'Gesamt',
             'Baden-Württemberg',
             'Bayern',
