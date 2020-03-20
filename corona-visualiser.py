@@ -7,7 +7,7 @@
 # pylint: disable=missing-docstring, trailing-whitespace, trailing-newlines, too-few-public-methods
 
 import sys
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 import json
 import pandas as pd
 import numpy as np
@@ -46,7 +46,7 @@ def try_parsing_date(text):
 
 args = parseOptions().parse_args()
 
-sys.stdout.write("Reading data: ")
+sys.stdout.write("Reading data:       ")
 sys.stdout.flush()
 data = str(date.today())
 # base_path_cs = '/home/marcus/github/covid-19/CSSEGISandData/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports'
@@ -175,13 +175,13 @@ countries = {
         'Switzerland': ['Main'],
         'Turkey': ['Main'],
         'Ukraine': ['Main'],
-        # 'United Kingdom': ['United Kingdom', 'Gibraltar'],
+        'United Kingdom': ['United Kingdom', 'Gibraltar'],
 }
 # countries = {'Germany': '', 'United Kingdom':['Cayman Islands', 'Gibraltar']}
 # countries = ['Germany']
 
-print ("...done")
-sys.stdout.write("initialising...")
+print (" done")
+sys.stdout.write("initialising:       ")
 sys.stdout.flush()
 
 country_list = {}
@@ -189,6 +189,8 @@ country_diff = {}
 
 # init data structures 
 for country in countries:
+    sys.stdout.write('-')
+    sys.stdout.flush()
     # print (F"Country: {country}")
     country_list[country]  = {}
     country_diff[country]  = {}
@@ -201,8 +203,9 @@ for country in countries:
             country_list[country][region][cat]=[]
             country_diff[country][region][cat]=[]
 
-print ("...done")
-sys.stdout.write("restructuring data...")
+print (" done")
+
+sys.stdout.write("restructuring data: ")
 sys.stdout.flush()
 # copy data from csv_list into plotable countries_list
 for d in range(0,len(csv_list)):
@@ -227,25 +230,39 @@ for d in range(0,len(csv_list)):
 
 # country_diff = country_list
 
+sys.stdout.write ("\n                    ")
+sys.stdout.flush()
 # create diffs:
 for country in countries:
+    sys.stdout.write('-')
+    sys.stdout.flush()
     for region in countries[country]:
         for cat in ['Confirmed', 'Deaths', 'Recovered']:
             country_diff[country][region][cat].append(0)
             for i in range(1,len(country_list[country][region][cat])):
-                a = country_list[country][region][cat][i]
-                b = country_list[country][region][cat][i-1]
-                c = a - b
-                lu = country_list[country][region]['Last Update'][i]
-                # if cat == 'Confirmed':
-                #     print(F"{lu}:  {cat:10}   {a} - {b} = {c}")
-                if c != 0:
-                    country_diff[country][region][cat].append(c)
-                else:
-                    country_diff[country][region][cat].append(country_diff[country][region][cat][-1])
+                a           = country_list[country][region][cat][i]
+                b           = country_list[country][region][cat][i-1]
+                delta       = a - b
+                lu          = country_list[country][region]['Last Update'][i]
+                time_a      = country_list[country][region]['Last Update'][i]
+                time_b      = country_list[country][region]['Last Update'][i-1]
+                # timedelta = timedelta(time_a, time_b)
+                timedelta   = time_a - time_b
+                if timedelta.total_seconds() != 0:
+                    delta_corr  = delta * (24*60*60) / timedelta.total_seconds()
+                    # if cat in ['Confirmed', 'Deaths']:
+                        # print(F"{lu}:  {cat:10}   {a:4} - {b:4} = {delta:4} (timedelta: {timedelta.total_seconds()/(24*60*60):8}) => {delta_corr:8}")
+                    if delta_corr != 0:
+                        country_diff[country][region][cat].append(delta)
+                    else:
+                        country_diff[country][region][cat].append(country_diff[country][region][cat][-1])
+                else: # Division by Zero
+                    country_diff[country][region][cat].append(delta)
 
-print ("...done")
-sys.stdout.write("generating plots...")
+
+
+print (" done")
+sys.stdout.write("generating plots:   ")
 sys.stdout.flush()
 # show statistics
 # for country in countries:
@@ -275,16 +292,18 @@ plt.style.use('classic')
 # plt.plot(x, list_conf, color='green', label='Confirmed', linewidth=1.0)
 # plt.plot(x, list_surv, color='blue', label='Cured', linewidth=1.0)
 for country in countries:
+    sys.stdout.write('-')
+    sys.stdout.flush()
     if country == 'eGermany':
-        print ("skipping eGermany")
+        # print ("skipping eGermany")
         continue
     for region in countries[country]:
-        if region != 'Main':
-            print (F"{country}/{region}")
-            plt.title(F'{country}/{region} Virus development')
-        else:
-            print (F"{country}")
-            plt.title(F'{country} Virus development')
+        # if region != 'Main':
+        #     print (F"{country}/{region}")
+        #     plt.title(F'{country}/{region} Virus development')
+        # else:
+        #     print (F"{country}")
+        #     plt.title(F'{country} Virus development')
 
         x = dates.date2num(country_list[country][region]['Last Update'])
         for cat in ['Confirmed', 'Deaths', 'Recovered']:
@@ -329,4 +348,4 @@ for country in countries:
             plt.savefig(F'{country_no_spaces}.jpg', bbox_inches='tight')
         plt.close()
         # plt.show()
-print ("...done")
+print (" done")
