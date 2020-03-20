@@ -253,7 +253,7 @@ for country in countries:
                     # if cat in ['Confirmed', 'Deaths']:
                         # print(F"{lu}:  {cat:10}   {a:4} - {b:4} = {delta:4} (timedelta: {timedelta.total_seconds()/(24*60*60):8}) => {delta_corr:8}")
                     if delta_corr != 0:
-                        country_diff[country][region][cat].append(delta)
+                        country_diff[country][region][cat].append(delta_corr)
                     else:
                         country_diff[country][region][cat].append(country_diff[country][region][cat][-1])
                 else: # Division by Zero
