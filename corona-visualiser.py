@@ -292,12 +292,12 @@ plt.style.use('classic')
 # plt.plot(x, list_conf, color='green', label='Confirmed', linewidth=1.0)
 # plt.plot(x, list_surv, color='blue', label='Cured', linewidth=1.0)
 for country in countries:
-    sys.stdout.write('-')
-    sys.stdout.flush()
     if country == 'eGermany':
         # print ("skipping eGermany")
         continue
     for region in countries[country]:
+        sys.stdout.write('-')
+        sys.stdout.flush()
         if region != 'Main':
             # print (F"{country}/{region}")
             plt.title(F'{country}/{region} Virus development')
