@@ -232,7 +232,12 @@ for d in range(0,len(csv_list)):
 
 sys.stdout.write ("\n                    ")
 sys.stdout.flush()
-# create diffs:
+global_max = {}
+german_max = {}
+for cat in categories:
+    global_max[cat] = 0
+    german_max[cat] = 0
+# create diffs and find global max:
 for country in countries:
     sys.stdout.write('-')
     sys.stdout.flush()
@@ -240,8 +245,15 @@ for country in countries:
         for cat in ['Confirmed', 'Deaths', 'Recovered']:
             country_diff[country][region][cat].append(0)
             for i in range(1,len(country_list[country][region][cat])):
+                # find max
                 a           = country_list[country][region][cat][i]
                 b           = country_list[country][region][cat][i-1]
+                if global_max[cat] < a:
+                    global_max[cat] = a
+                if country in ['Germany', 'eGermany'] and region not in ['Main', 'Gesamt']:
+                    if german_max[cat] < a:
+                        german_max[cat] = a
+                # do the diff thing
                 delta       = a - b
                 lu          = country_list[country][region]['Last Update'][i]
                 time_a      = country_list[country][region]['Last Update'][i]
@@ -298,6 +310,22 @@ for country in countries:
     for region in countries[country]:
         sys.stdout.write('-')
         sys.stdout.flush()
+
+        # set y axis limit
+        fig = plt.gcf()
+        # fig.set_size_inches(19.2,12.0)
+        fig.set_size_inches(23.62,15.245)
+        fig.autofmt_xdate(rotation=45)
+
+        ax = fig.gca()
+        y_max = ax.get_ylim()[1]
+        # ax.set_ylim([-y_max/100, y_max])
+        ax.set_ylim([0, global_max['Confirmed']])
+        # if country in ['Germany', 'eGermany']:
+        if country in ['Germany', 'eGermany'] and region not in ['Main', 'Gesamt']:
+            ax.set_ylim([0, german_max['Confirmed']])
+        # ax.set_ylim([0, y_max])
+
         if region != 'Main':
             # print (F"{country}/{region}")
             plt.title(F'{country}/{region} Virus development')
@@ -324,18 +352,6 @@ for country in countries:
         # plt.xlabel('D')
         plt.xticks(rotation=45)
         plt.ylabel('Cases')
-
-        fig = plt.gcf()
-        # fig.set_size_inches(19.2,12.0)
-        fig.set_size_inches(23.62,15.245)
-        fig.autofmt_xdate(rotation=45)
-
-        # set y axis limit
-        # y_max =
-        ax = fig.gca()
-        y_max = ax.get_ylim()[1]
-        # ax.set_ylim([-y_max/100, y_max])
-        ax.set_ylim([0, y_max])
 
         plt.grid(True)
         plt.legend(loc='upper center')
