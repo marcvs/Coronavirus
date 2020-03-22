@@ -8,6 +8,7 @@
 
 import sys
 from datetime import date, datetime, timedelta
+import math
 import json
 import pandas as pd
 import numpy as np
@@ -27,11 +28,13 @@ def parseOptions():
     parser.add_argument('--john', '-jhc', help='''Path to data of CSSE Data of Johns Hopkins.
             This may be a git clone of https://github.com/CSSEGISandData/COVID-19
             or the url https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/''',
-            default='https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/')
+            default='../CSSEGISandData/COVID-19')
+            # default='https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master')
     parser.add_argument('--rki', '-rki', help='''Path to data of German RKI Data
             This may be a git clone of this repository 
             or the url https://raw.githubusercontent.com/marcvs/Coronavirus/master/rki-fallzahlen''',
-            default='https://raw.githubusercontent.com/marcvs/Coronavirus/master/rki-fallzahlen')
+            default='rki-fallzahlen')
+            # default='https://raw.githubusercontent.com/marcvs/Coronavirus/master/rki-fallzahlen')
     return parser
 
 def try_parsing_date(text):
@@ -248,6 +251,14 @@ for country in countries:
                 # find max
                 a           = country_list[country][region][cat][i]
                 b           = country_list[country][region][cat][i-1]
+                # print (f"a: {a}")
+                if math.isnan(b):
+                    # print (f"b country: {country}/{region}-{cat}-{i} a: {a} b: {b}")
+                    b=0
+                if math.isnan(a):
+                    # print (f"a country: {country}/{region}-{cat}-{i} a: {a} b:{b}")
+                    a=0
+
                 if global_max[cat] < a:
                     global_max[cat] = a
                 if country in ['Germany', 'eGermany'] and region not in ['Main', 'Gesamt']:
