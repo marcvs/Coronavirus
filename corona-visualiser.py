@@ -21,6 +21,30 @@ day = str(day)
 day = day[-2:]
 day = int(day)
 
+class Animation():
+    animation = []
+    animation.append ("\_(O_0)_/")
+    animation.append ("|_(0_O)_/")
+    animation.append ("/_(o_0)_/")
+    animation.append ("-_(*_O)_/")
+    animation.append ("\_(-_0)_/")
+    animation.append ("|_(*_O)_/")
+    animation.append ("/_(o_0)_/")
+    animation.append ("-_(0_O)_/")
+    animation.append ("\_(O_0)_/")
+    animation.append ("|_(O_o)_/")
+    animation.append ("/_(0-O)_\\")
+    animation.append ("-_(0*o)_|")
+    animation.append ("\_(0-o)_/")
+    def __init__(self):
+        self.anim_id=0
+    def step(self):
+        rv =self. animation[self.anim_id]
+        self.anim_id += 1
+        if self.anim_id >= len(self.animation):
+            self.anim_id=0
+        return rv
+
 def parseOptions():
     '''Parse the commandline options'''
     parser = argparse.ArgumentParser()
@@ -208,13 +232,15 @@ for country in countries:
 
 print (" done")
 
-sys.stdout.write("restructuring data: ")
+anim = Animation()
+
+sys.stdout.write("restructuring data\n")
 sys.stdout.flush()
 # copy data from csv_list into plotable countries_list
 # Province/State,   Country/Region, Last Update,    Confirmed,  Deaths, Recovered,  Latitude,   Longitude
 # FIPS, Admin2, Province_State, Country_Region, Last_Update,    Lat,    Long_,  Confirmed,  Deaths, Recovered,  Active, Combined_Key
 for d in range(0,len(csv_list)):
-    sys.stdout.write('.')
+    sys.stdout.write(F'\r{anim.step()}')
     sys.stdout.flush()
     for country in countries:
         for region in countries[country]:
@@ -244,7 +270,7 @@ for cat in categories:
     german_max[cat] = 0
 # create diffs and find global max:
 for country in countries:
-    sys.stdout.write('-')
+    sys.stdout.write(F'\r{anim.step()}')
     sys.stdout.flush()
     for region in countries[country]:
         for cat in ['Confirmed', 'Deaths', 'Recovered']:
@@ -287,7 +313,7 @@ for country in countries:
 
 
 print (" done")
-sys.stdout.write("generating plots:   ")
+sys.stdout.write("generating plots:   \n")
 sys.stdout.flush()
 # show statistics
 # for country in countries:
@@ -321,7 +347,7 @@ for country in countries:
         # print ("skipping eGermany")
         continue
     for region in countries[country]:
-        sys.stdout.write('-')
+        sys.stdout.write(F'\r{anim.step()}')
         sys.stdout.flush()
 
         # set y axis limit
