@@ -38,7 +38,7 @@ def parseOptions():
     return parser
 
 def try_parsing_date(text):
-    for fmt in ('%m/%d/%y %H:%M', '%m/%d/%Y %H:%M', '%Y-%m-%dT%H:%M:%S'):
+    for fmt in ('%m/%d/%y %H:%M', '%m/%d/%Y %H:%M', '%Y-%m-%dT%H:%M:%S', '%Y-%m-%d %H:%M:%S'):
         try:
             return datetime.strptime(text, fmt)
         except ValueError:
@@ -211,12 +211,14 @@ print (" done")
 sys.stdout.write("restructuring data: ")
 sys.stdout.flush()
 # copy data from csv_list into plotable countries_list
+# Province/State,   Country/Region, Last Update,    Confirmed,  Deaths, Recovered,  Latitude,   Longitude
+# FIPS, Admin2, Province_State, Country_Region, Last_Update,    Lat,    Long_,  Confirmed,  Deaths, Recovered,  Active, Combined_Key
 for d in range(0,len(csv_list)):
     sys.stdout.write('.')
     sys.stdout.flush()
     for country in countries:
         for region in countries[country]:
-            # sys.stdout.write(f'{region[0]}')
+            # sys.stdout.write(f'{d}:{country}/{region}\n')
             for csv_country in range (0,len(csv_list[d])):
                 if country == csv_list[d]['Country/Region'][csv_country]:
                     prov_state = csv_list[d]['Province/State'][csv_country]
