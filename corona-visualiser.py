@@ -32,10 +32,10 @@ class Animation():
     animation.append ("/_(o_0)_/")
     animation.append ("-_(0_O)_/")
     animation.append ("\_(O_0)_/")
-    animation.append ("|_(O_o)_/")
-    animation.append ("/_(0-O)_\\")
-    animation.append ("-_(0*o)_|")
-    animation.append ("\_(0-o)_/")
+    animation.append ("|_(O_o)_|")
+    animation.append ("/_(0_O)_\\")
+    animation.append ("-_(0_0)_|")
+    animation.append ("\_(0_O)_/")
     def __init__(self):
         self.anim_id=0
     def step(self):
@@ -233,6 +233,32 @@ for country in countries:
 print (" done")
 
 anim = Animation()
+
+# Preprocess to reflect changes in data structure at Johns':
+for d in range(0,len(csv_list)):
+    try:
+        csv_list[d]['Province/State'] = csv_list[d]['Province_State']
+    except KeyError:
+        pass
+
+    try:
+        csv_list[d]['Country/Region'] = csv_list[d]['Country_Region']
+    except KeyError:
+        pass
+
+    try:
+        csv_list[d]['Last Update'] = csv_list[d]['Last_Update']
+    except KeyError:
+        pass
+
+    try:
+        csv_list[d]['Long'] = csv_list[d]['Long_']
+    except KeyError:
+        pass
+
+
+
+# exit (0)
 
 sys.stdout.write("restructuring data\n")
 sys.stdout.flush()
