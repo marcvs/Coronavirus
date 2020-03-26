@@ -1,0 +1,18 @@
+Province/State,Country/Region,Last Update,Confirmed,Deaths,Recovered,Latitude,Longitude
+Baden-Württemberg,eGermany,2020-03-26T00:00:00,7283,56,0
+Bayern,eGermany,2020-03-26T00:00:00,7993,37,0
+Berlin,eGermany,2020-03-26T00:00:00,1656,4,0
+Brandenburg,eGermany,2020-03-26T00:00:00,477,1,0
+Bremen,eGermany,2020-03-26T00:00:00,211,1,0
+Hamburg,eGermany,2020-03-26T00:00:00,1265,0,0
+Hessen,eGermany,2020-03-26T00:00:00,2157,6,0
+Mecklenburg-Vorpommern,eGermany,2020-03-26T00:00:00,244,0,0
+Niedersachsen,eGermany,2020-03-26T00:00:00,2347,8,0
+Nordrhein-Westfalen,eGermany,2020-03-26T00:00:00,7924,53,0
+Rheinland-Pfalz,eGermany,2020-03-26T00:00:00,1816,6,0
+Saarland,eGermany,2020-03-26T00:00:00,433,2,0
+Sachsen,eGermany,2020-03-26T00:00:00,1141,7,0
+Sachsen-Anhalt,eGermany,2020-03-26T00:00:00,418,1,0
+SchleswigHolstein,eGermany,2020-03-26T00:00:00,675,3,0
+Thüringen,eGermany,2020-03-26T00:00:00,468,3,0
+Gesamt,eGermany,2020-03-26T00:00:00,36508,198,0
