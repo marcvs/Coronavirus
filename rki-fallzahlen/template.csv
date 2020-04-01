@@ -1,18 +1,18 @@
 Province/State,Country/Region,Last Update,Confirmed,Deaths,Recovered,Latitude,Longitude
-Baden-Württemberg,		eGermany,	2020-03-25T00:00:00,	6069,	37,	0
-Bayern,					eGermany,	2020-03-25T00:00:00,	6558,	37,	0
-Berlin,					eGermany,	2020-03-25T00:00:00,	1428,	2,	0
-Brandenburg,			eGermany,	2020-03-25T00:00:00,	429,	1,	0
-Bremen,					eGermany,	2020-03-25T00:00:00,	200,	0,	0
-Hamburg,				eGermany,	2020-03-25T00:00:00,	1262,	0,	0
-Hessen,					eGermany,	2020-03-25T00:00:00,	1754,	4,	0
-Mecklenburg-Vorpommern,	eGermany,	2020-03-25T00:00:00,	218,	0,	0
-Niedersachsen,			eGermany,	2020-03-25T00:00:00,	2140,	7,	0
-Nordrhein-Westfalen,	eGermany,	2020-03-25T00:00:00,	7196,	43,	0
-Rheinland-Pfalz,		eGermany,	2020-03-25T00:00:00,	1591,	5,	0
-Saarland,				eGermany,	2020-03-25T00:00:00,	403,	2,	0
-Sachsen,				eGermany,	2020-03-25T00:00:00,	959,	6,	0
-Sachsen-Anhalt,			eGermany,	2020-03-25T00:00:00,	375,	1,	0
-SchleswigHolstein,		eGermany,	2020-03-25T00:00:00,	577,	3,	0
-Thüringen,				eGermany,	2020-03-25T00:00:00,	394,	1,	0
-Gesamt,					eGermany,	2020-03-25T00:00:00,	31556,	149,	0
+Baden-Württemberg,		eGermany,	2020-04-01T00:00:00,	13410,	197,0
+Bayern,					eGermany,	2020-04-01T00:00:00,	16497,	225,0
+Berlin,					eGermany,	2020-04-01T00:00:00,	2754,	16,	0
+Brandenburg,			eGermany,	2020-04-01T00:00:00,	881,	4,	0
+Bremen,					eGermany,	2020-04-01T00:00:00,	311,	5,	0
+Hamburg,				eGermany,	2020-04-01T00:00:00,	2311,	14,	0
+Hessen,					eGermany,	2020-04-01T00:00:00,	3445,	21,	0
+Mecklenburg-Vorpommern,	eGermany,	2020-04-01T00:00:00,	406,	3,	0
+Niedersachsen,			eGermany,	2020-04-01T00:00:00,	4382,	42,	0
+Nordrhein-Westfalen,	eGermany,	2020-04-01T00:00:00,	14351,	134,0
+Rheinland-Pfalz,		eGermany,	2020-04-01T00:00:00,	2899,	23,	0
+Saarland,				eGermany,	2020-04-01T00:00:00,	829,	8,	0
+Sachsen,				eGermany,	2020-04-01T00:00:00,	2034,	17,	0
+Sachsen-Anhalt,			eGermany,	2020-04-01T00:00:00,	750,	7,	0
+SchleswigHolstein,		eGermany,	2020-04-01T00:00:00,	1246,	10,	0
+Thüringen,				eGermany,	2020-04-01T00:00:00,	860,	6,	0
+Gesamt,					eGermany,	2020-04-01T00:00:00,	67366,	732,0

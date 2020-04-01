@@ -1,0 +1,15 @@
+Province/State,Country/Region,Last Update,Confirmed,Deaths,Recovered,Latitude,Longitude
+Bayern,eGermany,2020-03-29T00:00:00,12881,107,0
+Berlin,eGermany,2020-03-29T00:00:00,2360,9,0
+Brandenburg,eGermany,2020-03-29T00:00:00,721,1,0
+Bremen,eGermany,2020-03-29T00:00:00,275,2,0
+Hamburg,eGermany,2020-03-29T00:00:00,1846,4,0
+Mecklenburg-Vorpommern,eGermany,2020-03-29T00:00:00,348,1,0
+Niedersachsen,eGermany,2020-03-29T00:00:00,3450,21,0
+Nordrhein-Westfalen,eGermany,2020-03-29T00:00:00,11400,98,0
+Rheinland-Pfalz,eGermany,2020-03-29T00:00:00,2396,12,0
+Sachsen,eGermany,2020-03-29T00:00:00,1617,9,0
+Sachsen-Anhalt,eGermany,2020-03-29T00:00:00,592,2,0
+SchleswigHolstein,eGermany,2020-03-29T00:00:00,1005,6,0
+Thüringen,eGermany,2020-03-29T00:00:00,697,5,0
+Gesamt,eGermany,2020-03-29T00:00:00,52547,389,0
