@@ -70,7 +70,6 @@ def try_parsing_date(text):
     raise ValueError(F'no valid date format found: >>{text}<<')
 
 
-
 args = parseOptions().parse_args()
 
 sys.stdout.write("Reading data:       ")
@@ -92,9 +91,13 @@ for d in range(1, 30):
     if d >= 28:
         path_list.append (str(base_path_de+f'/2020-02-{d:02}.csv'))
 # Mar
-for d in range(11, day+1):
+for d in range(11, 31):
     path_list.append (str(base_path_cs+f'/csse_covid_19_data/csse_covid_19_daily_reports/03-{d:02}-2020.csv'))
     path_list.append (str(base_path_de+f'/2020-03-{d:02}.csv'))
+# Apr
+for d in range(11, day+1):
+    path_list.append (str(base_path_cs+f'/csse_covid_19_data/csse_covid_19_daily_reports/04-{d:02}-2020.csv'))
+    path_list.append (str(base_path_de+f'/2020-04-{d:02}.csv'))
 
 csv_list = []
 for d in path_list:
@@ -136,7 +139,7 @@ countries = {
         'Czechia': ['Main'],
         'Estonia': ['Main'],
         'Finland': ['Main'],
-        'France': ['France'],
+        'France': ['France', 'Main'],
         'Germany': [
             'Main',
             'Gesamt',
